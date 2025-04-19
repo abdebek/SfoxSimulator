@@ -1,6 +1,6 @@
 # sFoxHub Simulator
 
-A lightweight .NET Core SignalR-based emulator that simulates real-time market data feeds similar to sFox. It supports public feeds like `ticker`, `trades`, and `orderbook` without the authentication logic.
+A lightweight .NET Core SignalR-based simulator that generates real-time market data feeds similar to sFox. It supports public feeds like `ticker`, `trades`, and `orderbook` without the authentication logic.
 
 ## ✨ Features
 
@@ -15,7 +15,7 @@ A lightweight .NET Core SignalR-based emulator that simulates real-time market d
 - ASP.NET Core
 - SignalR
 - System.Reactive for simulation flow
-- C# 10 / .NET 6+
+- C# 12 / .NET 8+
 
 ## 🚀 Running the Project
 
