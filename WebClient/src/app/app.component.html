@@ -20,7 +20,7 @@
 </div>
 
 <div class="messages-container">
-  <h3>Received Messages (Latest 50)</h3>
+  <h3>Received Messages (Latest 25)</h3>
   <ng-container *ngIf="messages$ | async; let messages">
     <div *ngIf="messages.length === 0">No messages received yet.</div>
     <div *ngFor="let message of messages" class="message">
