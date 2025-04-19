@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
+using SfoxSimulator.Models;
 
 namespace SfoxSimulator;
 

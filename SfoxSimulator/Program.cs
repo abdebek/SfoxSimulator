@@ -33,8 +33,6 @@ var app = builder.Build();
 // Map your hub
 app.MapHub<SfoxHub>("/ws");
 
-app.MapOpenApi();
-
 app.UseCors();
 
 app.Run();
