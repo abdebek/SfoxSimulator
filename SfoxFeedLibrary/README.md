@@ -15,6 +15,5 @@
 
 ```csharp
 // Register the feed service as a singleton
-builder.Services.AddSingleton<ISfoxFeedService, SfoxFeedService>();
-builder.Services.AddHostedService(provider => provider.GetRequiredService<ISfoxFeedService>());
+builder.Services.AddSfoxSimulatorHostedService();
 ```

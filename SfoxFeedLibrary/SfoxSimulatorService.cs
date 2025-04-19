@@ -6,19 +6,19 @@ using SfoxFeedLibrary.Models;
 
 namespace SfoxFeedLibrary;
 
-public interface ISfoxFeedService : IHostedService, IDisposable
+public interface ISfoxSimulatorService : IHostedService, IDisposable
 {
     FeedSubject GetOrCreateFeedSubject(string feedKey);
     void RemoveFeedSubject(string feedKey);
 }
 
-public class SfoxFeedService : ISfoxFeedService
+public class SfoxSimulatorService : ISfoxSimulatorService
 {
-    private readonly IHubContext<SfoxHub> _hubContext;
-    private readonly ILogger<SfoxFeedService> _logger;
+    private readonly IHubContext<SfoxSimulatorHub> _hubContext;
+    private readonly ILogger<SfoxSimulatorService> _logger;
     private readonly ConcurrentDictionary<string, FeedSubject> _feedSubjects = new();
 
-    public SfoxFeedService(IHubContext<SfoxHub> hubContext, ILogger<SfoxFeedService> logger)
+    public SfoxSimulatorService(IHubContext<SfoxSimulatorHub> hubContext, ILogger<SfoxSimulatorService> logger)
     {
         _hubContext = hubContext;
         _logger = logger;
