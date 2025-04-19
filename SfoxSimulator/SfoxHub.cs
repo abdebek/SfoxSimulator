@@ -165,7 +165,7 @@ public class SfoxHub : Hub
 
 public class FeedSubject : IDisposable
 {
-    private readonly Subject<object> _subject = new();
+    private readonly Subject<MarketDataMessage> _subject = new();
     private readonly IDisposable _timer;
     private readonly ILogger _logger;
     private bool _disposed;
@@ -208,27 +208,15 @@ public class FeedSubject : IDisposable
         }
     }
 
-    private object CreateMarketData(string feedType, string currencyPair, MarketState state)
+    private MarketDataMessage CreateMarketData(string feedType, string currencyPair, MarketState state)
     {
         long timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         long sequence = new Random().Next(1000, 100000); // use a more reliable sequence generator?
     
         object payload = feedType switch
         {
-            "orderbook" => new { FeedKey, FeedType = feedType, CurrencyPair = currencyPair, state.Asks, state.Bids },    "ticker" => new
-    {
-        FeedKey,
-        FeedType = feedType,
-        CurrencyPair = currencyPair,
-        Ticker = new
-        {
-            Last = state.LastPrice,
-            High = state.LastPrice * 1.05m,
-            Low = state.LastPrice * 0.95m,
-            Volume = state.Volume24h,
-            Timestamp = DateTime.UtcNow
-        }
-    },
+            "orderbook" => new { FeedKey, FeedType = feedType, CurrencyPair = currencyPair, state.Asks, state.Bids },
+            "ticker" => new { FeedKey,  FeedType = feedType,  CurrencyPair = currencyPair,  Ticker = new  { Last = state.LastPrice, High = state.LastPrice * 1.05m, Low = state.LastPrice * 0.95m, Volume = state.Volume24h, Timestamp = DateTime.UtcNow }},
             "trades" => new { FeedKey, FeedType = feedType, CurrencyPair = currencyPair, Trade = new { Price = state.LastPrice, Quantity = state.RandomTradeQuantity(), Timestamp = DateTime.UtcNow } },
             _ => new { FeedKey, FeedType = feedType, CurrencyPair = currencyPair, Message = "Unsupported feed type" }
         };
@@ -236,7 +224,7 @@ public class FeedSubject : IDisposable
         return new MarketDataMessage(sequence, FeedKey, timestamp, payload);
     }
 
-    public IDisposable Subscribe(Action<object> onNext)
+    public IDisposable Subscribe(Action<MarketDataMessage> onNext)
     {
         return _subject.Subscribe(onNext);
     }
@@ -253,7 +241,7 @@ public class FeedSubject : IDisposable
     }
 }
 
-internal class ConnectionState : IDisposable
+public class ConnectionState : IDisposable
 {
     public ConcurrentDictionary<string, IDisposable> Subscriptions { get; } = new();
 
@@ -291,7 +279,6 @@ public class MarketState
 
     public decimal RandomTradeQuantity() => new Random().Next(1, 5);
 }
-
 
 public class MarketDataMessage
 {

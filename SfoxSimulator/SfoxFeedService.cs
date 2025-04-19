@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using System.Text.Json;
 using Microsoft.AspNetCore.SignalR;
 
 namespace SfoxSimulator;
@@ -29,9 +28,7 @@ public class SfoxFeedService : ISfoxFeedService
             var subject = new FeedSubject(key, _logger);
             subject.Subscribe(data =>
             {
-                var str = JsonSerializer.Serialize(data);
-                var message = JsonSerializer.Deserialize<MarketDataMessage>(str);
-                _ = SendDataToClients(message);
+                _ = SendDataToClients(data);
             });
             return subject;
         });
