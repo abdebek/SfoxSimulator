@@ -13,8 +13,8 @@ builder.Services.AddSignalR().AddHubOptions<SfoxHub>(options => {
 });
 
 // Register the feed service as a singleton
-builder.Services.AddSingleton<SfoxFeedService>();
-builder.Services.AddHostedService(provider => provider.GetRequiredService<SfoxFeedService>());
+builder.Services.AddSingleton<ISfoxFeedService, SfoxFeedService>();
+builder.Services.AddHostedService(provider => provider.GetRequiredService<ISfoxFeedService>());
 
 // Configure CORS services
 builder.Services.AddCors(options =>

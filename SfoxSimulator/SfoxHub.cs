@@ -11,9 +11,9 @@ public class SfoxHub : Hub
     private static int _connectionCount = 0;
 
     private readonly ILogger<SfoxHub> _logger;
-    private readonly SfoxFeedService _feedService;
+    private readonly ISfoxFeedService _feedService;
 
-    public SfoxHub(ILogger<SfoxHub> logger, SfoxFeedService feedService)
+    public SfoxHub(ILogger<SfoxHub> logger, ISfoxFeedService feedService)
     {
         _logger = logger;
         _feedService = feedService;

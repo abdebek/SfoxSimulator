@@ -19,7 +19,7 @@
 .messages-container {
   border: 1px solid #ccc;
   padding: 10px;
-  max-height: 400px;
+  max-height: max(400px, 70vh);
   overflow-y: auto;
 }
 
