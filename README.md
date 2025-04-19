@@ -26,6 +26,6 @@ A lightweight .NET Core SignalR-based emulator that simulates real-time market d
    cd sfoxhub-emulator
 
 
-- Backend - ./SfoxSimulator
+- Backend - ./WebApi
 
 - Frontend - ./WebClient
