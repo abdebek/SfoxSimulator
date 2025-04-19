@@ -1,4 +1,4 @@
-using SfoxSimulator;
+using SfoxFeedLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
 

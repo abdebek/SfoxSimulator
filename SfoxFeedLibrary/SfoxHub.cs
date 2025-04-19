@@ -1,8 +1,9 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
-using SfoxSimulator.Models;
+using Microsoft.Extensions.Logging;
+using SfoxFeedLibrary.Models;
 
-namespace SfoxSimulator;
+namespace SfoxFeedLibrary;
 
 public class SfoxHub : Hub
 {

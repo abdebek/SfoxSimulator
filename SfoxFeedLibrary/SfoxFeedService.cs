@@ -1,8 +1,10 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
-using SfoxSimulator.Models;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using SfoxFeedLibrary.Models;
 
-namespace SfoxSimulator;
+namespace SfoxFeedLibrary;
 
 public interface ISfoxFeedService : IHostedService, IDisposable
 {

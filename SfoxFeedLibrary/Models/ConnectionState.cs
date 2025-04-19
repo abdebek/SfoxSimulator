@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace SfoxSimulator.Models;
+namespace SfoxFeedLibrary.Models;
 
 public class ConnectionState : IDisposable
 {

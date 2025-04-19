@@ -1,4 +1,4 @@
-﻿namespace SfoxSimulator.Models;
+﻿namespace SfoxFeedLibrary.Models;
 
 public class MarketState
 {

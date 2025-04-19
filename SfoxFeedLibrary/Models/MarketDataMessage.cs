@@ -1,4 +1,4 @@
-﻿namespace SfoxSimulator.Models;
+﻿namespace SfoxFeedLibrary.Models;
 
 public class MarketDataMessage(long sequence, string recipient, long timestamp, object payload)
 {

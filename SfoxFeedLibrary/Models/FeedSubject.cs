@@ -1,6 +1,7 @@
-﻿using System.Reactive.Subjects;
+﻿using Microsoft.Extensions.Logging;
+using System.Reactive.Subjects;
 
-namespace SfoxSimulator.Models;
+namespace SfoxFeedLibrary.Models;
 
 public class FeedSubject : IDisposable
 {
