@@ -1,0 +1,35 @@
+<h2>sFox WebSocket Client Simulator</h2>
+
+<div class="connection-status">
+  Connection Status: <strong>{{ connectionStatus }}</strong>
+</div>
+
+<div class="controls">
+  <label for="feedSelect">Feed:</label>
+  <select id="feedSelect" [(ngModel)]="currentFeed">
+    <option *ngFor="let feed of availableFeeds" [value]="feed">{{ feed }}</option>
+  </select>
+
+  <label for="currencyPairSelect">Currency Pair:</label>
+  <select id="currencyPairSelect" [(ngModel)]="currentCurrencyPair">
+     <option *ngFor="let pair of availableCurrencyPairs" [value]="pair">{{ pair | uppercase }}</option>
+  </select>
+
+  <button (click)="subscribeToFeed()" [disabled]="connectionStatus !== 'Connected'">Subscribe</button>
+   <button (click)="unsubscribeFromFeed()" [disabled]="connectionStatus !== 'Connected'">Unsubscribe</button>
+</div>
+
+<div class="messages-container">
+  <h3>Received Messages (Latest 50)</h3>
+  <ng-container *ngIf="messages$ | async; let messages">
+    <div *ngIf="messages.length === 0">No messages received yet.</div>
+    <div *ngFor="let message of messages" class="message">
+      <div class="message-header">
+          <strong>Sequence:</strong> {{ message.sequence }} |
+          <strong>Recipient:</strong> {{ message.recipient }} |
+          <strong>Timestamp:</strong> {{ message.timestamp }}
+      </div>
+      <pre class="message-payload">{{ getPayloadString(message.payload) }}</pre>
+    </div>
+  </ng-container>
+</div>
