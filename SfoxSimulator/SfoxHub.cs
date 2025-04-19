@@ -280,18 +280,10 @@ public class MarketState
     public decimal RandomTradeQuantity() => new Random().Next(1, 5);
 }
 
-public class MarketDataMessage
+public class MarketDataMessage(long sequence, string recipient, long timestamp, object payload)
 {
-    public long sequence { get; set; }
-    public string recipient { get; set; } 
-    public long timestamp { get; set; } 
-    public object payload { get; set; } 
-
-    public MarketDataMessage(long sequence, string recipient, long timestamp, object payload)
-    {
-        this.sequence = sequence;
-        this.recipient = recipient;
-        this.timestamp = timestamp;
-        this.payload = payload;
-    }
+    public long sequence { get; set; } = sequence;
+    public string recipient { get; set; } = recipient;
+    public long timestamp { get; set; } = timestamp;
+    public object payload { get; set; } = payload;
 }
