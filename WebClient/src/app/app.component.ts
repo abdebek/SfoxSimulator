@@ -90,7 +90,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private registerHubCallbacks(): void {
     this.hubConnection.on('ReceiveMarketData', (data: SfoxMessage) => {
       const messages = [data, ... this._messages.value];
-      this._messages.next(messages.length > 25? messages.slice(25): messages);
+      this._messages.next(messages.length > 25? messages.slice(0, 25): messages);
     });
 
      this.hubConnection.on('ReceiveError', (error: string) => {
