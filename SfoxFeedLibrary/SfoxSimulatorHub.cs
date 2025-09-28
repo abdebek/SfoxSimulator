@@ -5,15 +5,15 @@ using SfoxFeedLibrary.Models;
 
 namespace SfoxFeedLibrary;
 
-public class SfoxHub : Hub
+public class SfoxSimulatorHub : Hub
 {
     private static readonly ConcurrentDictionary<string, ConnectionState> _connectionStates = new();
     private static int _connectionCount = 0;
 
-    private readonly ILogger<SfoxHub> _logger;
-    private readonly ISfoxFeedService _feedService;
+    private readonly ILogger<SfoxSimulatorHub> _logger;
+    private readonly ISfoxSimulatorService _feedService;
 
-    public SfoxHub(ILogger<SfoxHub> logger, ISfoxFeedService feedService)
+    public SfoxSimulatorHub(ILogger<SfoxSimulatorHub> logger, ISfoxSimulatorService feedService)
     {
         _logger = logger;
         _feedService = feedService;
